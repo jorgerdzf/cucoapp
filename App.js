@@ -1,18 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
+
 import React, { Component } from 'react';
 import { View, Text } from 'react-native'
 
 import * as firebase from 'firebase'
 import { firebaseConfig } from './config/firebase.js'
 
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import rootReducer from './redux/reducers'
+import thunk from 'redux-thunk'
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import LandingScreen from './components/auth/Landing';
-import { Register } from './components/auth/Register';
-import Login from './components/auth/Login.js';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+import LandingScreen from './components/auth/Landing'
+import { Register } from './components/auth/Register'
+import Login from './components/auth/Login.js'
+import Main from './components/main/Main'
 
 const Stack = createStackNavigator();
 
@@ -61,9 +70,9 @@ export class App extends Component {
       );
     } else {
       return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <Text>User Logged In.</Text>
-        </View>
+        <Provider store={store}>
+          <Main />
+        </Provider>
       )
     }
     
