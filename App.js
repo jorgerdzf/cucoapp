@@ -22,6 +22,7 @@ import LandingScreen from './components/auth/Landing'
 import { Register } from './components/auth/Register'
 import Login from './components/auth/Login.js'
 import Main from './components/main/Main'
+import AddPost from './components/post/AddPost'
 
 const Stack = createStackNavigator();
 
@@ -34,23 +35,22 @@ export class App extends Component {
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      
       if (!user) {
         this.setState({
           loggedIn: false,
           loaded: true,
-        });
+        })
       } else {
         this.setState({
           loggedIn: true,
           loaded: true,
-        });
+        })
       }
     })
   }
   render() {
     const { loggedIn, loaded } = this.state;
-    
+
     if (!loaded) {
       return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -58,7 +58,7 @@ export class App extends Component {
         </View>
       )
     }
-    if(!loggedIn){
+    if (!loggedIn) {
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
@@ -71,11 +71,16 @@ export class App extends Component {
     } else {
       return (
         <Provider store={store}>
-          <Main />
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Main">
+              <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
+              <Stack.Screen name="AddPost" component={AddPost} />
+            </Stack.Navigator>
+          </NavigationContainer>
         </Provider>
-      )
+      );
     }
-    
+
   }
 }
 
