@@ -24,6 +24,7 @@ import { Register } from './components/auth/Register'
 import Login from './components/auth/Login.js'
 import Main from './components/main/Main'
 import AddPost from './components/post/AddPost'
+import SavePost from './components/post/SavePost.js';
 
 const Stack = createStackNavigator();
 
@@ -75,7 +76,8 @@ export class App extends Component {
           <NavigationContainer>
             <Stack.Navigator initialRouteName="Main">
               <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
-              <Stack.Screen name="AddPost" component={AddPost} />
+              <Stack.Screen name="AddPost" component={AddPost} navigation={this.props.navigation}/>
+              <Stack.Screen name="SavePost" component={SavePost} navigation={this.props.navigation}/>
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>
