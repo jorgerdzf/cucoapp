@@ -1,4 +1,9 @@
-import { USER_STATE_CHANGED, USER_POST_STATE_CHANGED, USER_FOLLOWING_STATE_CHANGED } from "../constants"
+import {
+    USER_STATE_CHANGED,
+    USER_POST_STATE_CHANGED,
+    USER_FOLLOWING_STATE_CHANGED,
+    CLEAR_DATA
+} from "../constants"
 
 const initialState = {
     currentUser: null,
@@ -22,9 +27,15 @@ export const user = (state = initialState, action) => {
             return {
                 ...state,
                 following: action.following
-            }   
+            }
+        case CLEAR_DATA:
+            return {
+                currentUser: null,
+                posts: [],
+                following: [],
+            }
         default:
             return state
     }
-    
+
 }
