@@ -13,7 +13,6 @@ export default function SavePost(props, {navigation}) {
         const userId = firebase.auth().currentUser.uid;
         const folder = Math.random().toString(36);
         const childPath = `post/${userId}/${folder}`;
-        console.log(childPath);
         const response = await fetch(uri);
         const blob = await response.blob();
 

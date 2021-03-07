@@ -24,9 +24,6 @@ export default function App({ navigation }) {
             aspect: [1, 1],
             quality: 1,
         });
-
-        console.log(result);
-
         if (!result.cancelled) {
             setImage(result.uri);
         }

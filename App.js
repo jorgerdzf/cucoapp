@@ -25,6 +25,7 @@ import Login from './components/auth/Login.js'
 import Main from './components/main/Main'
 import AddPost from './components/post/AddPost'
 import SavePost from './components/post/SavePost.js';
+import Profile from './components/profile/Profile';
 
 const Stack = createStackNavigator();
 
@@ -78,6 +79,7 @@ export class App extends Component {
               <Stack.Screen name="Main" component={Main} />
               <Stack.Screen name="AddPost" component={AddPost} navigation={this.props.navigation}/>
               <Stack.Screen name="SavePost" component={SavePost} navigation={this.props.navigation}/>
+              <Stack.Screen name="Profile" component={Profile} navigation={this.props.navigation}/>
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>
