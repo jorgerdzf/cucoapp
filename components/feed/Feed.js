@@ -34,8 +34,10 @@ function Feed(props) {
                     horizontal={false}
                     data={posts}
                     renderItem={({item}) => (
-                        <View style={styles.containerImage}>
-                            <Text style={styles.container}>{item.user.name}</Text>
+                        <View style={
+                            styles.containerImage}>
+                            <Text style={s
+                                tyles.container}>{item.user.name}</Text>
                             <Image
                             style={styles.image}
                             source={{uri: item.downloadURL}}
